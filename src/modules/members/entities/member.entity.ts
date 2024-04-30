@@ -11,4 +11,16 @@ export class Member extends BaseEntity {
 
   @Column()
   lastName: string;
+
+  @Column()
+  document: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column()
+  Role: number;
 }
