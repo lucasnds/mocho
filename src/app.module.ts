@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Member } from './modules/members/entities/member.entity';
 import { CompaniesModule } from './modules/companies/companies.module';
 import { Company } from './modules/companies/entities/company.entity';
+import { ProjectsModule } from './modules/projects/projects.module';
+import { Project } from './modules/projects/entities/project.entity';
 
 @Module({
   imports: [
@@ -14,11 +16,12 @@ import { Company } from './modules/companies/entities/company.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [Member, Company],
+      entities: [Member, Company, Project],
       synchronize: true,
     }),
     MembersModule,
     CompaniesModule,
+    ProjectsModule,
   ],
   controllers: [],
   providers: [],

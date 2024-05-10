@@ -6,4 +6,10 @@ export class CreateMemberDto {
 
   @IsString()
   lastName: string;
+
+  @IsString()
+  document: string;
+
+  @IsString()
+  email: string;
 }
