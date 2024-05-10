@@ -4,6 +4,7 @@ import { UpdateMemberDto } from './dto/update-member.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Member } from './entities/member.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class MembersService {
@@ -12,8 +13,11 @@ export class MembersService {
     private membersRepository: Repository<Member>,
   ) {}
 
-  create(data: CreateMemberDto) {
-    return this.membersRepository.save(data);
+  async create(data: CreateMemberDto) {
+    return this.membersRepository.save({
+      ...data,
+      password: await bcrypt.hash(data.password, 10),
+    });
   }
 
   findAll() {

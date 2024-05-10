@@ -12,4 +12,7 @@ export class CreateMemberDto {
 
   @IsString()
   email: string;
+
+  @IsString()
+  password: string;
 }
