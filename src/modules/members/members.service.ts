@@ -17,7 +17,7 @@ export class MembersService {
   }
 
   findAll() {
-    return this.membersRepository.find();
+    return this.membersRepository.find({ relations: { company: true } });
   }
 
   findOne(id: string) {

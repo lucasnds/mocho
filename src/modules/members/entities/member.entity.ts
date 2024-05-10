@@ -1,5 +1,12 @@
+import { Company } from 'src/modules/companies/entities/company.entity';
 import { BaseEntity } from 'src/modules/utils/entities/base.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Member extends BaseEntity {
@@ -22,5 +29,9 @@ export class Member extends BaseEntity {
   password: string;
 
   @Column()
-  Role: number;
+  role: number;
+
+  @ManyToOne(() => Company)
+  @JoinColumn({ name: 'company_id' })
+  company: Company;
 }
