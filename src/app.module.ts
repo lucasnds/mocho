@@ -6,6 +6,8 @@ import { CompaniesModule } from './modules/companies/companies.module';
 import { Company } from './modules/companies/entities/company.entity';
 import { ProjectsModule } from './modules/projects/projects.module';
 import { Project } from './modules/projects/entities/project.entity';
+import { SkillsModule } from './modules/skills/skills.module';
+import { Address } from './modules/members/entities/address.entity';
 
 @Module({
   imports: [
@@ -16,12 +18,13 @@ import { Project } from './modules/projects/entities/project.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [Member, Company, Project],
+      entities: [Member, Company, Project, Address, SkillsModule],
       synchronize: true,
     }),
     MembersModule,
     CompaniesModule,
     ProjectsModule,
+    SkillsModule,
   ],
   controllers: [],
   providers: [],
