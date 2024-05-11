@@ -8,8 +8,9 @@ import { ProjectsModule } from './modules/projects/projects.module';
 import { Project } from './modules/projects/entities/project.entity';
 import { SkillsModule } from './modules/skills/skills.module';
 import { Address } from './modules/members/entities/address.entity';
-import { ProblemsModule } from './problems/problems.module';
-import { Problem } from './problems/entities/problem.entity';
+import { ProblemsModule } from './modules/problems/problems.module';
+import { Problem } from './modules/problems/entities/problem.entity';
+import { Skill } from './modules/skills/entities/skill.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { Problem } from './problems/entities/problem.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [Member, Company, Project, Address, SkillsModule, Problem],
+      entities: [Member, Company, Project, Address, Skill, Problem],
       synchronize: true,
     }),
     MembersModule,
