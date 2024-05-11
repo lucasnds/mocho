@@ -13,26 +13,26 @@ export class MembersService {
     private membersRepository: Repository<Member>,
   ) {}
 
-  async create(data: CreateMemberDto) {
+  async create(data: CreateMemberDto): Promise<Member> {
     return this.membersRepository.save({
       ...data,
       password: await bcrypt.hash(data.password, 10),
     });
   }
 
-  findAll() {
+  async findAll(): Promise<Member[]> {
     return this.membersRepository.find({ relations: { company: true } });
   }
 
-  findOne(id: string) {
+  async findOne(id: string): Promise<Member> {
     return this.membersRepository.findOne({ where: { id } });
   }
 
-  update(id: string, data: UpdateMemberDto) {
+  async update(id: string, data: UpdateMemberDto) {
     return this.membersRepository.update(id, data);
   }
 
-  softDelete(id: string) {
+  async softDelete(id: string) {
     return this.membersRepository.softDelete(id);
   }
 }
