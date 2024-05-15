@@ -2,7 +2,7 @@ import { Member } from 'src/modules/members/entities/member.entity';
 import { BaseEntity } from 'src/modules/utils/entities/base.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('companies')
 export class Company extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

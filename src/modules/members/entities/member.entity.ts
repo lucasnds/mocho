@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('members')
 export class Member extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
