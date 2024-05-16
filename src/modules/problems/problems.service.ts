@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProblemDto } from './dto/create-problem.dto';
 import { UpdateProblemDto } from './dto/update-problem.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Problem } from './entities/problem.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProblemsService {
-  create(createProblemDto: CreateProblemDto) {
-    return 'This action adds a new problem';
+  constructor(
+    @InjectRepository(Problem)
+    private readonly problemRepository: Repository<Problem>,
+  ) {}
+  create(data: CreateProblemDto) {
+    return this.problemRepository.save(data);
   }
 
   findAll() {
-    return `This action returns all problems`;
+    return this.problemRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} problem`;
+  findOne(id: string) {
+    return this.problemRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateProblemDto: UpdateProblemDto) {
-    return `This action updates a #${id} problem`;
+  update(id: string, data: UpdateProblemDto) {
+    return this.problemRepository.update(id, data);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} problem`;
+  remove(id: string) {
+    return this.problemRepository.delete(id);
   }
 }

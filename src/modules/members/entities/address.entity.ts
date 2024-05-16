@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Member } from './member.entity';
 
 @Entity('adresses')
 export class Address {
@@ -19,4 +26,8 @@ export class Address {
 
   @Column()
   number: string;
+
+  @OneToOne(() => Member)
+  @JoinColumn()
+  member: Member;
 }

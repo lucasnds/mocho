@@ -5,15 +5,22 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Member } from './entities/member.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { AdressesService } from './adresses.service';
+import { SkillsService } from '../skills/skills.service';
 
 @Injectable()
 export class MembersService {
   constructor(
     @InjectRepository(Member)
     private membersRepository: Repository<Member>,
+
+    private readonly adressesService: AdressesService,
+    private readonly skillsService: SkillsService,
   ) {}
 
   async create(data: CreateMemberDto): Promise<Member> {
+    await this.adressesService.create(data.address);
+    await this.skillsService.create(data.skill);
     return this.membersRepository.save({
       ...data,
       password: await bcrypt.hash(data.password, 10),
@@ -21,10 +28,12 @@ export class MembersService {
   }
 
   async findAll(): Promise<Member[]> {
-    return this.membersRepository.find({ relations: { company: true } });
+    return this.membersRepository.find({
+      relations: { company: true, address: true, skill: true },
+    });
   }
 
-  async findOne(id: string): Promise<Member> {
+  findOne(id: string): Promise<Member> {
     return this.membersRepository.findOne({ where: { id } });
   }
 

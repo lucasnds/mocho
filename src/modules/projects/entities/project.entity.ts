@@ -1,5 +1,6 @@
+import { Problem } from 'src/modules/problems/entities/problem.entity';
 import { BaseEntity } from 'src/modules/utils/entities/base.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('projects')
 export class Project extends BaseEntity {
@@ -14,4 +15,7 @@ export class Project extends BaseEntity {
 
   @Column()
   objective: string;
+
+  @OneToMany(() => Problem, (problem) => problem.project, { cascade: true })
+  problem: Problem[];
 }

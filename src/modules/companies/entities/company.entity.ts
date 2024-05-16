@@ -8,7 +8,7 @@ export class Company extends BaseEntity {
   id: string;
 
   @Column()
-  name: string;
+  social_name: string;
 
   @Column()
   document: string;

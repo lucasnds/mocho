@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProblemsService } from './problems.service';
 import { CreateProblemDto } from './dto/create-problem.dto';
 import { UpdateProblemDto } from './dto/update-problem.dto';
@@ -8,8 +16,8 @@ export class ProblemsController {
   constructor(private readonly problemsService: ProblemsService) {}
 
   @Post()
-  create(@Body() createProblemDto: CreateProblemDto) {
-    return this.problemsService.create(createProblemDto);
+  create(@Body() body: CreateProblemDto) {
+    return this.problemsService.create(body);
   }
 
   @Get()
@@ -19,16 +27,16 @@ export class ProblemsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.problemsService.findOne(+id);
+    return this.problemsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProblemDto: UpdateProblemDto) {
-    return this.problemsService.update(+id, updateProblemDto);
+  update(@Param('id') id: string, @Body() body: UpdateProblemDto) {
+    return this.problemsService.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.problemsService.remove(+id);
+    return this.problemsService.remove(id);
   }
 }

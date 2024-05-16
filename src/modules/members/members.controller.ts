@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
 import { MembersService } from './members.service';
 import { CreateMemberDto } from './dto/create-member.dto';
@@ -26,17 +27,26 @@ export class MembersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.membersService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const member = await this.membersService.findOne(id);
+    if (!member) throw new NotFoundException('Membro não existe!');
+    return member;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMemberDto: UpdateMemberDto) {
-    return this.membersService.update(id, updateMemberDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateMemberDto: UpdateMemberDto,
+  ) {
+    const member = await this.membersService.update(id, updateMemberDto);
+    if (!member) throw new NotFoundException('Membro não existe!');
+    return member;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.membersService.softDelete(id);
+  async remove(@Param('id') id: string) {
+    const member = await this.membersService.softDelete(id);
+    if (!member) throw new NotFoundException('Membro não existe!');
+    return member;
   }
 }

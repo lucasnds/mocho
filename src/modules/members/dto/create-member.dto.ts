@@ -15,4 +15,9 @@ export class CreateMemberDto {
 
   @IsString()
   password: string;
+
+  //type;
+  address: any;
+
+  skill: any;
 }

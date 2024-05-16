@@ -5,8 +5,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Address } from './address.entity';
+import { Skill } from 'src/modules/skills/entities/skill.entity';
 
 @Entity('members')
 export class Member extends BaseEntity {
@@ -34,4 +38,10 @@ export class Member extends BaseEntity {
   @ManyToOne(() => Company)
   @JoinColumn({ name: 'company_id' })
   company: Company;
+
+  @OneToOne(() => Address, (address) => address.member)
+  address: Address;
+
+  @OneToMany(() => Skill, (skill) => skill.member, { cascade: true })
+  skill: Skill[];
 }
