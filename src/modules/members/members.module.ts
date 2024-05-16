@@ -11,5 +11,6 @@ import { SkillsModule } from '../skills/skills.module';
   imports: [TypeOrmModule.forFeature([Member, Address]), SkillsModule],
   providers: [MembersService, AdressesService],
   controllers: [MembersController],
+  exports: [MembersService],
 })
 export class MembersModule {}

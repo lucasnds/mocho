@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { SkillsService } from './skills.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
+import { AuthGuard } from '../auth/guard/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('skills')
 export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}

@@ -11,6 +11,7 @@ import { Address } from './modules/members/entities/address.entity';
 import { ProblemsModule } from './modules/problems/problems.module';
 import { Problem } from './modules/problems/entities/problem.entity';
 import { Skill } from './modules/skills/entities/skill.entity';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -29,8 +30,7 @@ import { Skill } from './modules/skills/entities/skill.entity';
     ProjectsModule,
     SkillsModule,
     ProblemsModule,
+    AuthModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

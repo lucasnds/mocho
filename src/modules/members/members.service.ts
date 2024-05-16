@@ -37,6 +37,10 @@ export class MembersService {
     return this.membersRepository.findOne({ where: { id } });
   }
 
+  findOneByEmail(email: string): Promise<Member> {
+    return this.membersRepository.findOne({ where: { email } });
+  }
+
   async update(id: string, data: UpdateMemberDto) {
     return this.membersRepository.update(id, data);
   }
