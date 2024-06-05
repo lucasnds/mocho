@@ -7,16 +7,13 @@ import {
   Param,
   Delete,
   NotFoundException,
-  UseGuards,
 } from '@nestjs/common';
 import { MembersService } from './members.service';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
-import { AuthGuard } from '../auth/guard/auth.guard';
 import { AdressesService } from './adresses.service';
 import { SkillsService } from '../skills/skills.service';
 
-@UseGuards(AuthGuard)
 @Controller('members')
 export class MembersController {
   constructor(
@@ -27,6 +24,7 @@ export class MembersController {
 
   @Post()
   async create(@Body() body: CreateMemberDto) {
+    console.log(body);
     if (body.address) await this.adressesService.create(body.address);
     if (body.skill) await this.skillsService.create(body.skill);
     return this.membersService.create(body);
