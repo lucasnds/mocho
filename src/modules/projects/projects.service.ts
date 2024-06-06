@@ -22,7 +22,7 @@ export class ProjectsService {
   async findOne(id: string) {
     return this.projectRepository.findOne({
       where: { id },
-      relations: { member: { skill: true } },
+      relations: { member: { skill: true }, problem: true },
     });
   }
 
