@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { Address } from './address.entity';
 import { Skill } from 'src/modules/skills/entities/skill.entity';
+import { Project } from 'src/modules/projects/entities/project.entity';
 
 @Entity('members')
 export class Member extends BaseEntity {
@@ -38,6 +39,10 @@ export class Member extends BaseEntity {
   @ManyToOne(() => Company)
   @JoinColumn({ name: 'company_id' })
   company: Company;
+
+  @ManyToOne(() => Project)
+  @JoinColumn({ name: 'project_id' })
+  project: Project;
 
   @OneToOne(() => Address, (address) => address.member)
   address: Address;

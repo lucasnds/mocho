@@ -16,11 +16,14 @@ export class ProjectsService {
   }
 
   async findAll() {
-    return this.projectRepository.find();
+    return this.projectRepository.find({ relations: { member: true } });
   }
 
   async findOne(id: string) {
-    return this.projectRepository.findOne({ where: { id } });
+    return this.projectRepository.findOne({
+      where: { id },
+      relations: { member: true },
+    });
   }
 
   async update(id: string, data: UpdateProjectDto) {

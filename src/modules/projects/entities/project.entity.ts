@@ -1,3 +1,4 @@
+import { Member } from 'src/modules/members/entities/member.entity';
 import { Problem } from 'src/modules/problems/entities/problem.entity';
 import { BaseEntity } from 'src/modules/utils/entities/base.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -18,4 +19,7 @@ export class Project extends BaseEntity {
 
   @OneToMany(() => Problem, (problem) => problem.project, { cascade: true })
   problem: Problem[];
+
+  @OneToMany(() => Member, (member) => member.project, { cascade: true })
+  member: Member[];
 }

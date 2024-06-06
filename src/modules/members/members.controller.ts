@@ -24,7 +24,6 @@ export class MembersController {
 
   @Post()
   async create(@Body() body: CreateMemberDto) {
-    console.log(body);
     if (body.address) await this.adressesService.create(body.address);
     if (body.skill) await this.skillsService.create(body.skill);
     return this.membersService.create(body);

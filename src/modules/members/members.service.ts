@@ -21,9 +21,7 @@ export class MembersService {
   }
 
   async findAll(): Promise<Member[]> {
-    return this.membersRepository.find({
-      relations: { company: true, address: true, skill: true },
-    });
+    return this.membersRepository.find({ relations: { project: true } });
   }
 
   findOne(id: string): Promise<Member> {
